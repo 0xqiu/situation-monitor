@@ -15,15 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 8
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
-      - run: pnpm install
-      - run: pnpm build
+          cache: 'npm'  # 改成 npm
+      - run: npm ci   # 用 npm ci 安装（更快、更可靠）
+      - run: npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
